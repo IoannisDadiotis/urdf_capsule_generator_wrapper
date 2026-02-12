@@ -1,0 +1,85 @@
+sudo: required
+language: cpp
+env:
+  global:
+  - APT_DEPENDENCIES="cmake cmake-data doxygen libltdl-dev libboost-all-dev liblog4cxx10-dev"
+  - HOMEBREW_DEPENDENCIES="doxygen log4cxx ipopt openblas mumps"
+  - GIT_DEPENDENCIES="roboptim/roboptim-core"
+  - DEBSIGN_KEYID=5AE5CD75
+  - PPA_URI="roboptim/ppa"
+  - GH_USERNAME=thomas-moulard
+  - GH_REPO=roboptim/roboptim-core-plugin-ipopt
+  - LCOV_IGNORE_RULES="*tests*"
+  - EIGEN_MAJOR=3.2
+  - secure: fURGUkCIPnZZ4G+Gaf9wMPH2P8sXiDA0kA1S6qVdCbenIyilRNnLmPiqHoqwtVEl4pqpdmRoFnMbJMGIuh+61gdo23+MZ1TBeNUp86nkH4v+qVRw5n1Nm2cKJZiqiuRHcTF3jVCVgx7eUvDkPAjJ9ff4vxB8sQhOQkQeGilJyak=
+  - secure: TBMOOJtRFuQK9NWIlKuBg+/LiuTa8Hz+8PsnZB/vGlc4FpoRJkz7DmnQS/sCDxunhaXZX6rac7THzCn6lrp5wksXNRRqUwRiv+JixyE1WbAnn22JBEouhs4o4fjRtwPvvkH0+EpAxuSebltCESrdxfjjkeLine4CZvV0e6HPquw=
+  - secure: ALE6izEg9T+fqCBUvvhKEgOgCnR+43DSOFT/DDBIj2hCXlf9R9dQ8upaG/6JXl08i5hwVRvQMK9+zJfU25cTTM/xpC8O/5G8t7pG9Y+/QeVOMbOCQnHMDe7dB8azO8CHnC91pP00ychf8KSL2Exz+o1k1fha/9BaZZDo5zCrKKU=
+  - secure: "YOeurB3pqF+B5iJHQBq4HtBoTW6PcDaNFuvDqVC64huArDZ9jjZt7EqDVEHJwuwMxrLW94lgdR9DAOwAM+X5EaMlekJ2h56not7U+553/NZYLC4MgimGOAn127kaO7CacZmdYNjQNq+G8pXJX/N+VSaqLy+WhM6Kuxts0CDC1UM="
+notifications:
+  hipchat:
+    rooms:
+    - secure: YH0AqP/y2L3+YkHNezAOfBNMB5QkeEYE3z5NV5k7gxqaEPEklQeMrSHLZzN1TuSyms/RuiQ6Zj0QA9D2ZxioTxTqGUQbh5c+Ia5n5GTIJZYg24uVXPS1w6uFQSyVNIZE6tJGpgf0RHzeGtejRW7Q9Ppr6e55TBnBc53fGTqJyPs=
+  email: roboptim@googlegroups.com
+branches:
+  only:
+  - master
+  - dev
+  - debian
+  - travis
+  - coverity_scan
+script:
+  - if [ "${TRAVIS_OS_NAME}" == "linux" ]; then export LD_LIBRARY_PATH=`pkg-config --variable=plugindir roboptim-core`:$LD_LIBRARY_PATH; fi
+  - if [ "${TRAVIS_OS_NAME}" == "osx" ]; then export DYLD_LIBRARY_PATH=`pkg-config --variable=plugindir roboptim-core`:$DYLD_LIBRARY_PATH; fi
+  - if [ "${COVERITY_SCAN_BRANCH}" != "1" ]; then ./.travis/run build; fi
+after_success:
+  - ./.travis/run after_success
+  - codecov --gcov-root=/tmp/_ci/build
+after_failure: ./.travis/run after_failure
+before_install:
+  # Avoid bug on CI with OSX, see https://github.com/travis-ci/travis-ci/issues/8552
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update ; fi
+  - pip install --user codecov
+  - ./.travis/dependencies/eigen-${EIGEN_MAJOR}
+  - ./.travis/run before_install
+  - if [[ "${TRAVIS_OS_NAME}" == "linux" ]]; then CC=gcc CXX=g++ ./.travis/dependencies/ipopt; fi
+
+matrix:
+  allow_failures:
+    - os: linux
+      compiler: clang
+    - os: osx
+      compiler: gcc
+    - env: COVERITY_SCAN_BRANCH=1
+  include:
+    - os: linux
+      dist: trusty
+      compiler: gcc
+    - os: linux
+      dist: trusty
+      compiler: clang
+    - os: linux
+      dist: trusty
+      compiler: gcc
+      env: EIGEN_MAJOR=3.3
+    - os: linux
+      dist: precise
+      compiler: gcc
+      env: MASTER_PPA="george-edison55/precise-backports"
+    - os: linux
+      dist: precise
+      compiler: clang
+      env: MASTER_PPA="george-edison55/precise-backports"
+    - os: osx
+      compiler: clang
+    - os: osx
+      compiler: gcc
+
+addons:
+  coverity_scan:
+    project:
+      name: "roboptim/roboptim-core-plugin-ipopt"
+      description: "Build submitted via Travis CI"
+    notification_email: roboptim@googlegroups.com
+    build_command_prepend: ". .travis/common.sh && mkdir coverity && cd coverity && cmake .."
+    build_command: "make"
+    branch_pattern: coverity_scan
