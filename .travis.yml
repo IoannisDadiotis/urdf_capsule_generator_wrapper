@@ -1,0 +1,97 @@
+sudo: required
+language: cpp
+env:
+  global:
+    - secure: "cz8Eo/xP13SCH6j38LE4eFqAfI7H5BUQaWaK9yObZWYxCm3M6FL6TOUJ0vecwKJoPyUuk5Z9qYwZCZstkID5Vyn1xNm5PavdZcRhhb7E9knJeBSTMLAqn51I8KL64E0lyqvqgM89knotGvjgY+HshwWYmR+f9v/sbFyVoUvBvvo="
+    - secure: "F9mibfsT3Ezk0RRsgOHy8RUO82H05REGmJKLDKdHiHE3toxykQX64oNBB8txjHoi+UF0H1Gwmk4oB/pNeILtyHdSuB7hB1Muod9wspOuKrzO7SMTGdjpPw7nDjQEmtfrZFhXEGb/3xm66uSGojhwe0RJF5mOzyfno+G8SIJyos4="
+    - secure: "Hn0mNkHgP0azydZUqq3CXifrDw+6adcJ541/EInw59BhM9Q7orJEDsfkqSMICLsIQxe+qNb0pYjCze10GZQPqhNBKcsDGmMDOqvwNPyOqEy8TOWl0j6emO3K0QVbfz7l2I9Gvwym/ZVQ+4XH1oZgmfJOPgxLmWZ69wZUDFBlMCg="
+    - secure: "Atmvwjxe3WqmUPumdDubBTvgC1v5JbIVtgBwuvZOsYdQ36eKOCSBuS0uVS0WbHHmeljeVUzb1EEGitKKjS6hYAkdg3F5eFmHPophL8zUHkY4fGAE80oGyPAFOeqZzIYp5cpStR8540K32C7vkqKqPFkufwLGKI0QZ87HP3U60AM="
+    - EIGEN_MAJOR=3.2
+    - APT_DEPENDENCIES="cmake cmake-data doxygen libltdl-dev libboost-all-dev"
+    - HOMEBREW_DEPENDENCIES="doxygen"
+    - GIT_DEPENDENCIES=""
+    - GH_USERNAME=bchretien
+    - GH_REPO=roboptim/roboptim-core
+    - DEBSIGN_KEYID=5AE5CD75
+    - PPA_URI="roboptim/ppa"
+    - LCOV_IGNORE_RULES="*tests*"
+notifications:
+  hipchat:
+    rooms:
+      - secure: YH0AqP/y2L3+YkHNezAOfBNMB5QkeEYE3z5NV5k7gxqaEPEklQeMrSHLZzN1TuSyms/RuiQ6Zj0QA9D2ZxioTxTqGUQbh5c+Ia5n5GTIJZYg24uVXPS1w6uFQSyVNIZE6tJGpgf0RHzeGtejRW7Q9Ppr6e55TBnBc53fGTqJyPs=
+  email: roboptim@googlegroups.com
+branches:
+  only:
+  - master
+  - dev
+  - debian
+  - travis
+  - coverity_scan
+script:
+  - export CMAKE_ADDITIONAL_OPTIONS="-DSTORAGE_ORDER=${ROBOPTIM_STORAGE_ORDER:-ColMajor}"
+  - if [ "${ENABLE_CXX11}" == "1" ]; then export CMAKE_ADDITIONAL_OPTIONS="-DUSE_CXX11:BOOL=ON -DROBOPTIM_PRECOMPILE_DENSE_SPARSE:BOOL=ON ${CMAKE_ADDITIONAL_OPTIONS}"; fi
+  - if [ "${COVERITY_SCAN_BRANCH}" != "1" ]; then ./.travis/run build; fi
+after_success:
+  - ./.travis/run after_success
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then codecov --gcov-root=/tmp/_ci/build ; fi
+after_failure: ./.travis/run after_failure
+before_install:
+  # Avoid bug on CI with OSX, see https://github.com/travis-ci/travis-ci/issues/8552
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then pip install --user codecov ; fi
+  - ./.travis/run  before_install
+  - ./.travis/dependencies/eigen-${EIGEN_MAJOR}
+
+matrix:
+  allow_failures:
+    - os: linux
+      compiler: clang
+    - os: osx
+      compiler: gcc
+    - env: COVERITY_SCAN_BRANCH=1
+  include:
+    - os: linux
+      dist: trusty
+      compiler: gcc
+      env: ROBOPTIM_STORAGE_ORDER=ColMajor
+    - os: linux
+      dist: trusty
+      compiler: gcc
+      env: ROBOPTIM_STORAGE_ORDER=RowMajor
+    - os: linux
+      dist: trusty
+      compiler: clang
+    - os: linux
+      dist: trusty
+      compiler: gcc
+      env: ENABLE_CXX11=1
+    - os: linux
+      dist: trusty
+      compiler: clang
+      env: ENABLE_CXX11=1
+    - os: linux
+      dist: trusty
+      compiler: gcc
+      env: EIGEN_MAJOR=3.3
+    - os: linux
+      dist: precise
+      compiler: gcc
+      env: MASTER_PPA="george-edison55/precise-backports"
+    - os: linux
+      dist: precise
+      compiler: clang
+      env: MASTER_PPA="george-edison55/precise-backports"
+    - os: osx
+      compiler: clang
+    - os: osx
+      compiler: gcc
+
+addons:
+  coverity_scan:
+    project:
+      name: "roboptim/roboptim-core"
+      description: "Build submitted via Travis CI"
+    notification_email: roboptim@googlegroups.com
+    build_command_prepend: ". .travis/common.sh && mkdir coverity && cd coverity && cmake .."
+    build_command: "make"
+    branch_pattern: coverity_scan

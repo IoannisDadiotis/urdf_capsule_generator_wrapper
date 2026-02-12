@@ -1,0 +1,17 @@
+Solver:
+  Plugin: dummy-td
+  Problem:
+    0 (twice differentiable function)
+    Objective scaling: 1
+    Arguments bounds: (0, 1)
+    Arguments scaling: 1
+    No constraints.
+    No starting point.
+    Infinity value (for all functions): inf
+  Parameters:
+    dummy-parameter (dummy parameter): 42
+    dummy-parameter2 (yet another dummy parameter): 3
+    dummy-parameter3 (just a dummy key): ...and a dummy value!
+    dummy-parameter4: [4](1,2,3,4)
+    dummy-parameter5 (dummy boolean): false
+

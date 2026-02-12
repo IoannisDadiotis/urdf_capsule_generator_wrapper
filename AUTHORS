@@ -1,0 +1,51 @@
+This package was written by and with the assistance of
+
+* Ko Ayusawa                    k.ayusawa@aist.go.jp
+- Windows (Intel compiler) portage
+
+* Stanislas Brossette           stanislas.brossette@gmail.com
+- Polynomial function.
+
+* Benjamin Chrétien             chretien@lirmm.fr
+- Package maintainer.
+- Solver error reporting enhancement.
+- Callback system.
+- Eigen::Ref support.
+- NLopt bridge implementation.
+- PaGMO bridge implementation.
+- Python bindings implementation.
+- Analysis scripts.
+
+* Félix Darricau                felix.darricau@gmail.com
+- Manifold support.
+
+* Grégoire Duchemin             greg.duchemin@gmail.com
+- Manifold support.
+
+* Antonio El Khoury             antonio.elkhoury@gmail.com
+- Non-scalar constraints support.
+
+* Florent Lamiraux              florent@laas.fr
+- Interface design.
+- Eigen3 support.
+
+* François Keith                francois.keith@gmail.com
+- Microsoft Windows / Microsoft Visual Studio support.
+- Non-scalar constraints support.
+
+* Thomas Moulard                thomas.moulard@gmail.com
+- Package creation.
+- Interface implementation.
+- CFSQP bridge implementation.
+- Ipopt bridge implementation.
+- NAG bridge implementation.
+- KNITRO bridge implementation.
+- Tutorials.
+- Homebrew repository.
+
+* Olivier Stasse                olivier.stasse@aist.go.jp
+- Interface design.
+
+* Pierre-Brice Wieber           pierre-brice.wieber@inrialpes.fr
+- Interface design.
+- CFSQP integration.
