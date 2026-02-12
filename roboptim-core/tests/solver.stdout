@@ -1,0 +1,123 @@
+Solver:
+  Problem:
+    x (not differentiable)
+    Objective scaling: 1
+    Arguments bounds: (-inf, inf)
+    Arguments scaling: 1
+    No constraints.
+    Starting point: [1](0)
+    Starting value: [1](0)
+    Infinity value (for all functions): inf
+
+Solver:
+  Problem:
+    x (not differentiable)
+    Objective scaling: 1
+    Arguments bounds: (-inf, inf)
+    Arguments scaling: 1
+    No constraints.
+    Starting point: [1](0)
+    Starting value: [1](0)
+    Infinity value (for all functions): inf
+  Parameters:
+    data.int (dummy integer): 10
+    data.string (dummy string): dummy data
+    data.value_type (dummy value_type): 42
+
+solve ()
+Visitor (SolverError):
+  Solver error: the null solver always fails.
+solve ()
+Solver:
+  Problem:
+    x (not differentiable)
+    Objective scaling: 1
+    Arguments bounds: (-inf, inf)
+    Arguments scaling: 1
+    No constraints.
+    Starting point: [1](0)
+    Starting value: [1](0)
+    Infinity value (for all functions): inf
+  Result:
+    Solver error: the null solver always fails.
+  Parameters:
+    data.int (dummy integer): 10
+    data.string (dummy string): dummy data
+    data.value_type (dummy value_type): 42
+
+Visitor (SolverError):
+  Solver error: the null solver always fails.
+Solver error: the null solver always fails.
+Result:
+  Size (input, output): 1, 1
+  X: [1](0)
+  Value: [1](0)
+
+Solver:
+  Problem:
+    x (not differentiable)
+    Objective scaling: 1
+    Arguments bounds: (-inf, inf)
+    Arguments scaling: 1
+    No constraints.
+    Starting point: [1](0)
+    Starting value: [1](0)
+    Infinity value (for all functions): inf
+  Result:
+    Solver error: the null solver always fails.
+  Parameters:
+    data.int (dummy integer): 10
+    data.string (dummy string): dummy data
+    data.value_type (dummy value_type): 42
+
+solve ()
+Solver:
+  Problem:
+    x (not differentiable)
+    Objective scaling: 1
+    Arguments bounds: (-inf, inf)
+    Arguments scaling: 1
+    No constraints.
+    Starting point: [1](0)
+    Starting value: [1](0)
+    Infinity value (for all functions): inf
+  Result:
+    Solver error: the null solver always fails.
+  Parameters:
+    data.int (dummy integer): 10
+    data.string (dummy string): dummy data
+    data.value_type (dummy value_type): 42
+
+Solver:
+  Problem:
+    x (not differentiable)
+    Objective scaling: 1
+    Arguments bounds: (-inf, inf)
+    Arguments scaling: 1
+    No constraints.
+    Starting point: [1](0)
+    Starting value: [1](0)
+    Infinity value (for all functions): inf
+  Parameters:
+    data.int (dummy integer): 10
+    data.string (dummy string): dummy data
+    data.value_type (dummy value_type): 42
+
+solve ()
+Solver:
+  Problem:
+    x (not differentiable)
+    Objective scaling: 1
+    Arguments bounds: (-inf, inf)
+    Arguments scaling: 1
+    No constraints.
+    Starting point: [1](0)
+    Starting value: [1](0)
+    Infinity value (for all functions): inf
+  Result:
+    Solver error: the null solver always fails.
+  Parameters:
+    data.int (dummy integer): 10
+    data.string (dummy string): dummy data
+    data.value_type (dummy value_type): 42
+

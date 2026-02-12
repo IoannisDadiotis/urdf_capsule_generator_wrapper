@@ -1,0 +1,79 @@
+                                                                -*- outline -*-
+
+New in 3.1, 2015-06-27
+* ColMajor/RowMajor support has been improved (cf. #89). Default is back to
+  ColMajor since this is Eigen's default mode, but that can be changed with a
+  CMake variable.
+* Allocation checking has been improved (cf. #92).
+* Multiplots are now available with the matplotlib plotting backend (cf. #94).
+* Added vector_t and bool to the solver parameter types. As a consequence,
+  std::string parameters should not rely on automatic conversion from const
+  char* (cf. 7a0bbb74c60dd21a9f467a20fe02df67c2dd689f). Basically:
+
+  // This will be converted to bool:
+  parameters["key"].value = "value";
+  // While this will be a string:
+  parameters["key"].value = std::string ("value");
+
+* Renamed scale[s]* to scaling* (cf. 434559c940f0866724c24bc32921ee8adfcb005f).
+  Previous methods/typedefs are currently kept for backward compatibility, but
+  marked as deprecated.
+* Add new StructuredInput helper (cf. #96).
+* Add support for matrix plotting with matplotlib (cf.
+  5abd27ec5e4fdabe1b9299681eb7271befdf4c17 /
+  af48e9b95cccbd8bcc13b2ea8ba077cdfce215d4).
+
+New in 3.0, 2015-03-24
+* [MAJOR ABI BREAKING CHANGE] Add Eigen::Ref support: now RobOptim functions
+  accept blocks/segments of Eigen matrices as input.
+* Lots of new functions (cos, sin, etc.), operators (plus, minus, scalar, map
+  etc.) and decorators (cached function etc.).
+* Callback system (logger, callback multiplexer).
+* Simple Matplotlib support for visualization.
+* Function pools.
+* Set argument names (useful for plotting).
+* Improved CachedFunction with LRU cache.
+* Automatic conversion of constraints/cost function types when creating
+  problems.
+* Faster forward-difference rule for finite differences.
+* Removed exception specifiers (void function(...) throw()).
+* Storage order was changed from Eigen's default (column-major) to row-major.
+  The storage order is available in the GenericFunctionTraits (StorageOrder).
+* Move metaprogramming magic to roboptim/core/detail/utility.hh.
+* Merge roboptim/core/visualization/util.hh with roboptim/core/util.hh.
+
+New in 2.0, 2013-04-09
+* [MAJOR ABI BREAKING CHANGE] Switch from uBlas to Eigen for matrix computation.
+* Add support for Eigen sparse matrices.
+* Huge speed-up by avoiding allocationg in time-critical functions/methods.
+* Various bugfix.
+
+New in 1.0, 2012-01-30
+* Specialize template problem for empty vector of constraints.
+* Support for cache functions.
+* Switch to cmake.
+* Add support for nonlinear least-square problems.
+
+New in 0.4, 2009-11-16:
+* Make plug-in loading more robust.
+* Enhanced gradient checks.
+* Handle symbol visibility under Linux properly.
+* Uniformized floating point number display.
+* Bug fix
+
+New in 0.3, 2009-09-25:
+* Finite difference gradients
+* New kinds of functions: constant, identity function.
+* Enhance display of problem, solver, functions.
+* Experimental support for parametrized functions.
+* Numerous bug fixes.
+
+New in 0.2, 2009-05-03:
+* New plug-in system
+* Can export functions to Gnuplot.
+* New N times derivable function.
+
+New in 0.1, 04/17/2009:
+* Shared interface definition.
+* Implementation of the CFSQP bridge.
+* Implementation of the Ipopt bridge.

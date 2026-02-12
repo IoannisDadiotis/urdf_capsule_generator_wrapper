@@ -1,0 +1,74 @@
+Problem:
+  a * d * (a + b + c) + d (not differentiable)
+  Objective scaling: 1
+  Arguments bounds: (-inf, inf), (-inf, inf), (-inf, inf), (-inf, inf)
+  Arguments scaling: 1, 1, 1, 1
+  No constraints.
+  No starting point.
+  Infinity value (for all functions): inf
+Problem:
+  a * d * (a + b + c) + d (not differentiable)
+  Objective scaling: 1
+  Arguments bounds: (-inf, inf), (-inf, inf), (-inf, inf), (-inf, inf)
+  Arguments scaling: 1, 1, 1, 1
+  Number of constraints: 1
+  Constraint 0
+      a * d * (a + b + c) + d (not differentiable)
+      Bounds: (0, 5)
+      Scaling: 3.5
+      Initial value: [1](0)
+  Starting point: [4](0,0,0,0)
+  Starting value: [1](0)
+  Infinity value (for all functions): inf
+---
+Solver:
+  Problem:
+    a * d * (a + b + c) + d (not differentiable)
+    Objective scaling: 1
+    Arguments bounds: (-inf, inf), (-inf, inf), (-inf, inf), (-inf, inf)
+    Arguments scaling: 1, 1, 1, 1
+    Number of constraints: 1
+    Constraint 0
+        a * d * (a + b + c) + d (not differentiable)
+        Bounds: (0, 5)
+        Scaling: 3.5
+        Initial value: [1](0)
+    Starting point: [4](0,0,0,0)
+    Starting value: [1](0)
+    Infinity value (for all functions): inf
+  Result:
+    Solver error: The dummy solver always fail.
+  Parameters:
+    dummy-parameter (dummy parameter): 42
+    dummy-parameter2 (yet another dummy parameter): 3
+    dummy-parameter3 (just a dummy key): ...and a dummy value!
+    dummy-parameter4: [4](1,2,3,4)
+    dummy-parameter5 (dummy boolean): false
+The dummy solver always fail.
+Discrete point: 2.3 (cnt: 1)
+Discrete point: 2.8 (cnt: 2)
+
+Discrete point: 2 (cnt: 1)
+Discrete point: 2.1 (cnt: 2)
+Discrete point: 2.2 (cnt: 3)
+Discrete point: 2.3 (cnt: 4)
+Discrete point: 2.4 (cnt: 5)
+Discrete point: 2.5 (cnt: 6)
+Discrete point: 2.6 (cnt: 7)
+Discrete point: 2.7 (cnt: 8)
+Discrete point: 2.8 (cnt: 9)
+Discrete point: 2.9 (cnt: 10)
+Discrete point: 3 (cnt: 11)
+
+Discrete point: 0.8 (cnt: 1)
+Discrete point: 1.8 (cnt: 2)
+Discrete point: 2.8 (cnt: 3)
+Discrete point: 3.8 (cnt: 4)
+Discrete point: 4.8 (cnt: 5)
+Discrete point: 5.8 (cnt: 6)
+Discrete point: 6.8 (cnt: 7)
+Discrete point: 7.8 (cnt: 8)
+Discrete point: 8.8 (cnt: 9)
+Discrete point: 9.8 (cnt: 10)
+Discrete point: 10.8 (cnt: 11)
+
