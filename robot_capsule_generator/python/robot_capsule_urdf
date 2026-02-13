@@ -429,8 +429,9 @@ if __name__ == '__main__':
         print("Error! no urdf_file provided")
         exit()
     else:
-        robot = URDF.from_xml_string(args.urdf_file.read())
-    
+        with open(args.urdf_file.name, 'rb') as f:
+    	    robot = URDF.from_xml_string(f.read())
+
     if args.capsule_path:
         CapsuleWriter.capsule_folder = args.capsule_path
 
