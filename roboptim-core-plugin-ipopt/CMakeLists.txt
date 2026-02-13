@@ -13,6 +13,7 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with roboptim-core.  If not, see <http://www.gnu.org/licenses/>.
 
+# Requires at least CMake 2.8 to configure the package.
 CMAKE_MINIMUM_REQUIRED(VERSION 3.20)
 project(roboptim-core-plugin-ipopt)
 
@@ -28,11 +29,11 @@ SET(PROJECT_URL "https://github.com/roboptim/roboptim-core-plugin-ipopt")
 SET(DOXYGEN_USE_MATHJAX "YES")
 
 SET(HEADERS
-  ${CMAKE_CURRENT_SOURCE_DIR}/include/roboptim/core/plugin/ipopt/ipopt-common.hh
-  ${CMAKE_CURRENT_SOURCE_DIR}/include/roboptim/core/plugin/ipopt/ipopt-parameters-updater.hh
-  ${CMAKE_CURRENT_SOURCE_DIR}/include/roboptim/core/plugin/ipopt/ipopt-td.hh
-  ${CMAKE_CURRENT_SOURCE_DIR}/include/roboptim/core/plugin/ipopt/ipopt.hh
-  ${CMAKE_CURRENT_SOURCE_DIR}/include/roboptim/core/plugin/ipopt/ipopt-sparse.hh
+  ${CMAKE_SOURCE_DIR}/include/roboptim/core/plugin/ipopt/ipopt-common.hh
+  ${CMAKE_SOURCE_DIR}/include/roboptim/core/plugin/ipopt/ipopt-parameters-updater.hh
+  ${CMAKE_SOURCE_DIR}/include/roboptim/core/plugin/ipopt/ipopt-td.hh
+  ${CMAKE_SOURCE_DIR}/include/roboptim/core/plugin/ipopt/ipopt.hh
+  ${CMAKE_SOURCE_DIR}/include/roboptim/core/plugin/ipopt/ipopt-sparse.hh
   )
 
 SET(PKG_CONFIG_ADDITIONAL_VARIABLES plugindir relplugindir ${PKG_CONFIG_ADDITIONAL_VARIABLES})
