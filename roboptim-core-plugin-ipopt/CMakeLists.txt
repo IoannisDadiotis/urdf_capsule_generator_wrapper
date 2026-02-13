@@ -28,11 +28,11 @@ SET(PROJECT_URL "https://github.com/roboptim/roboptim-core-plugin-ipopt")
 SET(DOXYGEN_USE_MATHJAX "YES")
 
 SET(HEADERS
-  ${CMAKE_SOURCE_DIR}/include/roboptim/core/plugin/ipopt/ipopt-common.hh
-  ${CMAKE_SOURCE_DIR}/include/roboptim/core/plugin/ipopt/ipopt-parameters-updater.hh
-  ${CMAKE_SOURCE_DIR}/include/roboptim/core/plugin/ipopt/ipopt-td.hh
-  ${CMAKE_SOURCE_DIR}/include/roboptim/core/plugin/ipopt/ipopt.hh
-  ${CMAKE_SOURCE_DIR}/include/roboptim/core/plugin/ipopt/ipopt-sparse.hh
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/roboptim/core/plugin/ipopt/ipopt-common.hh
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/roboptim/core/plugin/ipopt/ipopt-parameters-updater.hh
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/roboptim/core/plugin/ipopt/ipopt-td.hh
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/roboptim/core/plugin/ipopt/ipopt.hh
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/roboptim/core/plugin/ipopt/ipopt-sparse.hh
   )
 
 SET(PKG_CONFIG_ADDITIONAL_VARIABLES plugindir relplugindir ${PKG_CONFIG_ADDITIONAL_VARIABLES})

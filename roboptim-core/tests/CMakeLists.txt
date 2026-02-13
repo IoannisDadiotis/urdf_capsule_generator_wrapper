@@ -116,7 +116,7 @@ ROBOPTIM_CORE_TEST(solver)
 ROBOPTIM_CORE_TEST(solver-factory)
 
 # Compile the dummy solver in this test to bypass the plug-in system.
-ROBOPTIM_CORE_TEST(simple "${CMAKE_SOURCE_DIR}/src/dummy.cc")
+ROBOPTIM_CORE_TEST(simple "${CMAKE_CURRENT_SOURCE_DIR}/src/dummy.cc")
 
 # Results.
 ROBOPTIM_CORE_TEST(result)

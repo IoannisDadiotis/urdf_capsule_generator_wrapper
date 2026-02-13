@@ -1,0 +1,15 @@
+[submodule "roboptim-core/cmake"]
+	path = roboptim-core/cmake
+	url = git@github.com:jrl-umi3218/jrl-cmakemodules.git
+[submodule "roboptim-core/.travis"]
+	path = roboptim-core/.travis
+	url = git@github.com:jrl-umi3218/jrl-travis.git
+[submodule "roboptim-core-plugin-ipopt/.travis"]
+	path = roboptim-core-plugin-ipopt/.travis
+	url = git@github.com:jrl-umi3218/jrl-travis.git
+[submodule "roboptim-core-plugin-ipopt/cmake"]
+	path = roboptim-core-plugin-ipopt/cmake
+	url = git@github.com:jrl-umi3218/jrl-cmakemodules.git
+[submodule "roboptim-capsule/.travis"]
+	path = roboptim-capsule/.travis
+	url = git@github.com:jrl-umi3218/jrl-travis.git
