@@ -36,8 +36,8 @@ SET(BOOST_COMPONENTS
 SEARCH_FOR_BOOST()
 SEARCH_FOR_QHULL()
 ADD_REQUIRED_DEPENDENCY("eigen3 >= 3.2.0")
-ADD_REQUIRED_DEPENDENCY("roboptim-core >= 3.2")
-ADD_REQUIRED_DEPENDENCY("roboptim-core-plugin-ipopt >= 3.2")
+ADD_REQUIRED_DEPENDENCY("roboptim-core")
+ADD_REQUIRED_DEPENDENCY("roboptim-core-plugin-ipopt")
 
 # Add main library to pkg-config file.
 PKG_CONFIG_APPEND_LIBS(${PROJECT_NAME})
