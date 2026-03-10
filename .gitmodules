@@ -13,3 +13,6 @@
 [submodule "roboptim-capsule/.travis"]
 	path = roboptim-capsule/.travis
 	url = git@github.com:jrl-umi3218/jrl-travis.git
+[submodule "roboptim-core-plugin-ipopt/tests/shared_tests"]
+	path = roboptim-core-plugin-ipopt/tests/shared_tests
+	url = git@github.com:roboptim/roboptim-shared-tests.git
