@@ -5,7 +5,10 @@ set -e  # exit on error
 ROOT_DIR="$(pwd)"
 
 # Where to install all packages
-# INSTALL_PREFIX="$ROOT_DIR/install"
+INSTALL_PREFIX="$ROOT_DIR/install"
+    echo "=============================="
+    echo "Install folder: $INSTALL_PREFIX"
+    echo "=============================="
 
 # List of packages in order
 PACKAGES=(
@@ -15,8 +18,11 @@ PACKAGES=(
   "robot_capsule_generator"
 )
 
+#source paths
+source ./source_paths.sh
+
 # Optional: clean previous install
-# rm -rf "$INSTALL_PREFIX"
+sudo rm -rf "$INSTALL_PREFIX"
 
 # Loop over packages
 for PKG in "${PACKAGES[@]}"; do
@@ -32,7 +38,7 @@ for PKG in "${PACKAGES[@]}"; do
     cd "$BUILD_DIR"
 
     # Configure with CMake
-    cmake "$PKG_DIR" -DDISABLE_TESTS=ON
+    cmake "$PKG_DIR" -DDISABLE_TESTS=ON -DCMAKE_INSTALL_PREFIX="$INSTALL_PREFIX"
 
     # Build
     cmake --build . -- -j$(nproc)
@@ -42,6 +48,7 @@ for PKG in "${PACKAGES[@]}"; do
 
     # Return to root dir
     cd "$ROOT_DIR"
+    source ./source_paths.sh
 done
 
 echo "All packages built and installed to $INSTALL_PREFIX"
