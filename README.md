@@ -35,7 +35,9 @@ docker run -it --rm \
 ## Generate capsules for a URDF model
 If everything is built and installed correctly you can run the capsule generation scripts:
 ```
+cd urdf_capsule_generator_wrapper
 ./source_paths.sh
+cd robot_capsule_generator/python
 python3 robot_capsule_urdf your_model.urdf -o output_model.urdf
 python3 robot_capsule_urdf_to_rviz output_model.urdf -o output_model_rviz.urdf
 ```
