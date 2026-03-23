@@ -26,11 +26,13 @@ Run the container:
 # allow container to connect to X server
 xhost +local:docker
 # run the container
-docker run -it --rm \
+docker run -it --name capsules --rm \
     -e DISPLAY=$DISPLAY \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
     urdf_capsule_env:latest
 ```
+
+Notice that the name of the container is `capsules`.
 
 ## Generate capsules for a URDF model
 If everything is built and installed correctly you can run the capsule generation scripts:
@@ -43,6 +45,8 @@ python3 robot_capsule_urdf_to_rviz output_model.urdf -o output_model_rviz.urdf
 ```
 
 ## Visualize the result
+
+To visualize the result you have to execute the following commands.
 ```bash
 ros2 run robot_state_publisher robot_state_publisher --ros-args -p robot_description:="$(cat output_model_rviz.urdf)"
 ```
@@ -51,7 +55,12 @@ On two new terminals, open rviz with `rviz2` and a gui for publishing joint stat
 ros2 run joint_state_publisher_gui joint_state_publisher_gui
 ```
 
-Remember to visualize a robot model using the ros2 param `/robot_description` and select an existing frame as Fixed frame. If everything has been executed correctly you will be able to see your robot with collision capsules.
+With the following command you can open new terminals in the existing `capsules` container:
+```bash
+docker exec -it capsules bash
+```
+
+Remember to visualize a robot model using the ros2 param `/robot_description` and select an existing frame as Fixed frame. If everything has been executed correctly you will be able to see your robot with collision capsules. Remember to tick the `Collision Enabled` box in rviz.
 
 <img width="225" height="290" alt="image" src="https://github.com/user-attachments/assets/afeaa7e0-7aef-4a4a-ab17-a67b0d326076" />
 
