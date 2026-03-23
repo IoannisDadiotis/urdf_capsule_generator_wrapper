@@ -29,6 +29,7 @@ RUN apt-get update && apt-get install -y \
     ros-jazzy-xacro \
     ros-jazzy-robot-state-publisher \
     ros-jazzy-srdfdom \
+    ros-jazzy-joint-state-publisher-gui \
     && rm -rf /var/lib/apt/lists/*
 
 # install moveit
